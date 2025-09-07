@@ -21,12 +21,37 @@ const AIChat = () => {
   ]);
   const [inputValue, setInputValue] = useState("");
 
+  const generateResponse = (question: string) => {
+    const lowerQuestion = question.toLowerCase();
+    
+    if (lowerQuestion.includes('diwali')) {
+      return "Diwali, the Festival of Lights, celebrates the victory of light over darkness and good over evil. It commemorates Lord Rama's return to Ayodhya after 14 years of exile. People light diyas, exchange sweets, and pray to Goddess Lakshmi for prosperity.";
+    }
+    if (lowerQuestion.includes('music') || lowerQuestion.includes('classical')) {
+      return "Indian classical music has two major traditions: Hindustani (North) and Carnatic (South). It's based on ragas (melodic frameworks) and talas (rhythmic cycles). Great masters like Pandit Ravi Shankar have shared this divine art globally.";
+    }
+    if (lowerQuestion.includes('karma')) {
+      return "Karma means 'action' in Sanskrit. It's the universal law of cause and effect - every action has consequences. Good deeds lead to positive results, while harmful actions create suffering. It teaches us to act righteously and take responsibility for our choices.";
+    }
+    if (lowerQuestion.includes('festival')) {
+      return "India celebrates numerous festivals: Holi (colors), Dussehra (victory of good), Eid, Christmas, Guru Nanak Jayanti, Onam, Durga Puja, and many more. Each festival has deep spiritual significance and brings communities together in celebration.";
+    }
+    if (lowerQuestion.includes('dance')) {
+      return "Indian classical dances include Bharatanatyam, Kathak, Odissi, Kuchipudi, Manipuri, Mohiniyattam, and Kathakali. Each tells stories through intricate hand gestures (mudras), facial expressions, and rhythmic movements, often depicting tales from ancient epics.";
+    }
+    
+    return "India's culture is vast and beautiful! From ancient Vedic wisdom to vibrant art forms, every aspect reflects our deep spiritual heritage. Ask me about specific traditions, festivals, philosophy, or art forms to learn more about Bharat's timeless wisdom.";
+  };
+
   const handleSend = () => {
     if (!inputValue.trim()) return;
     
+    const userMessage = inputValue;
+    const botResponse = generateResponse(userMessage);
+    
     setMessages(prev => [...prev, 
-      { type: "user", content: inputValue },
-      { type: "bot", content: "Thank you for your question! This is a demo - in the full version, I would provide detailed insights about Indian culture and traditions." }
+      { type: "user", content: userMessage },
+      { type: "bot", content: botResponse }
     ]);
     setInputValue("");
   };
