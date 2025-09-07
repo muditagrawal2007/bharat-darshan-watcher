@@ -39,6 +39,14 @@ export default {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
+        spiritual: {
+          DEFAULT: "hsl(var(--spiritual))",
+          foreground: "hsl(var(--spiritual-foreground))",
+        },
+        culture: {
+          DEFAULT: "hsl(var(--culture))",
+          foreground: "hsl(var(--culture-foreground))",
+        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -62,6 +70,19 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      backgroundImage: {
+        "gradient-hero": "var(--gradient-hero)",
+        "gradient-cultural": "var(--gradient-cultural)",
+        "gradient-warm": "var(--gradient-warm)",
+      },
+      boxShadow: {
+        "warm": "var(--shadow-warm)",
+        "cultural": "var(--shadow-cultural)",
+      },
+      transitionTimingFunction: {
+        "smooth": "var(--transition-smooth)",
+        "bounce": "var(--transition-bounce)",
       },
       keyframes: {
         "accordion-down": {
