@@ -21,26 +21,95 @@ const AIChat = () => {
   ]);
   const [inputValue, setInputValue] = useState("");
 
+  const culturalDatabase = {
+    greetings: ["namaste", "hello", "hi", "सलाम", "आदाब"],
+    festivals: {
+      diwali: "🪔 Diwali (Deepavali) is India's most celebrated festival, the Festival of Lights symbolizing the victory of light over darkness, good over evil. It marks Lord Rama's return to Ayodhya after 14 years of exile. Celebrated for 5 days, people decorate with diyas (oil lamps), rangoli, burst fireworks, exchange sweets, and worship Goddess Lakshmi for prosperity and wealth.",
+      holi: "🎨 Holi, the Festival of Colors, celebrates the arrival of spring and the victory of good over evil. Based on the legend of Prahlad and Holika, people play with gulal (colored powder), dance, sing, and enjoy traditional sweets like gujiya. It breaks social barriers as people of all backgrounds celebrate together.",
+      durga: "🕉️ Durga Puja honors Goddess Durga's victory over demon Mahishasura, symbolizing the triumph of divine feminine power (Shakti). Especially grand in Bengal, it involves elaborate pandals, artistic idols, cultural programs, and communal feasting over 10 days culminating in Vijayadashami.",
+      dussehra: "🏹 Dussehra celebrates Lord Rama's victory over Ravana, representing good conquering evil. Marked by burning effigies of Ravana, Kumbhakarna, and Meghnath, it signifies that truth and dharma always prevail. Different regions have unique traditions like Mysore's royal procession.",
+    },
+    philosophy: {
+      karma: "⚖️ Karma (कर्म) literally means 'action' in Sanskrit. It's the universal law of cause and effect - every thought, word, and deed creates consequences. Good actions (punya) lead to positive results, while harmful actions create suffering. This encourages ethical living and personal responsibility for one's destiny.",
+      dharma: "🕉️ Dharma (धर्म) is righteous living according to cosmic law and moral duty. It varies by age, caste, gender, and occupation (svadharma). The Mahabharata says 'Dharma exists to promote the welfare of all beings, so whatever conduces to welfare is dharma.'",
+      moksha: "🙏 Moksha (मोक्ष) is liberation from the cycle of birth, death, and rebirth (samsara). It's the ultimate spiritual goal in Hinduism, achieved through various paths: karma yoga (action), bhakti yoga (devotion), raja yoga (meditation), and jnana yoga (knowledge).",
+    },
+    arts: {
+      music: "🎵 Indian classical music has two main traditions: Hindustani (North India) and Carnatic (South India). Based on ragas (melodic frameworks) and talas (rhythmic cycles), it's deeply spiritual. Legendary artists like Pandit Ravi Shankar, Ustad Allauddin Khan, and M.S. Subbulakshmi have elevated this divine art globally.",
+      dance: "💃 India's classical dances are devotional art forms: Bharatanatyam (Tamil Nadu), Kathak (North India), Odissi (Odisha), Kuchipudi (Andhra Pradesh), Manipuri (Manipur), Mohiniyattam (Kerala), Kathakali (Kerala), and Sattriya (Assam). Each uses mudras (hand gestures), facial expressions, and rhythmic movements to tell stories from epics.",
+    },
+    literature: {
+      vedas: "📚 The Vedas are humanity's oldest spiritual texts (1500-500 BCE): Rigveda (hymns), Samaveda (melodies), Yajurveda (rituals), and Atharveda (spells/medicine). They contain profound wisdom about cosmic principles, meditation, and righteous living.",
+      epics: "📖 The Ramayana and Mahabharata are India's great epics. Ramayana tells of Lord Rama's journey, dharma, and devotion. Mahabharata, containing the Bhagavad Gita, explores complex moral dilemmas through the Kurukshetra war between Pandavas and Kauravas.",
+    }
+  };
+
   const generateResponse = (question: string) => {
     const lowerQuestion = question.toLowerCase();
     
-    if (lowerQuestion.includes('diwali')) {
-      return "Diwali, the Festival of Lights, celebrates the victory of light over darkness and good over evil. It commemorates Lord Rama's return to Ayodhya after 14 years of exile. People light diyas, exchange sweets, and pray to Goddess Lakshmi for prosperity.";
-    }
-    if (lowerQuestion.includes('music') || lowerQuestion.includes('classical')) {
-      return "Indian classical music has two major traditions: Hindustani (North) and Carnatic (South). It's based on ragas (melodic frameworks) and talas (rhythmic cycles). Great masters like Pandit Ravi Shankar have shared this divine art globally.";
-    }
-    if (lowerQuestion.includes('karma')) {
-      return "Karma means 'action' in Sanskrit. It's the universal law of cause and effect - every action has consequences. Good deeds lead to positive results, while harmful actions create suffering. It teaches us to act righteously and take responsibility for our choices.";
-    }
-    if (lowerQuestion.includes('festival')) {
-      return "India celebrates numerous festivals: Holi (colors), Dussehra (victory of good), Eid, Christmas, Guru Nanak Jayanti, Onam, Durga Puja, and many more. Each festival has deep spiritual significance and brings communities together in celebration.";
-    }
-    if (lowerQuestion.includes('dance')) {
-      return "Indian classical dances include Bharatanatyam, Kathak, Odissi, Kuchipudi, Manipuri, Mohiniyattam, and Kathakali. Each tells stories through intricate hand gestures (mudras), facial expressions, and rhythmic movements, often depicting tales from ancient epics.";
+    // Greetings
+    if (culturalDatabase.greetings.some(greeting => lowerQuestion.includes(greeting))) {
+      return "🙏 Namaste! Welcome to the world of Indian culture and wisdom. I'm here to share the rich heritage of Bharat - from ancient scriptures to vibrant festivals, from philosophical insights to classical arts. What aspect of Indian culture would you like to explore?";
     }
     
-    return "India's culture is vast and beautiful! From ancient Vedic wisdom to vibrant art forms, every aspect reflects our deep spiritual heritage. Ask me about specific traditions, festivals, philosophy, or art forms to learn more about Bharat's timeless wisdom.";
+    // Festivals
+    if (lowerQuestion.includes('diwali') || lowerQuestion.includes('deepavali')) {
+      return culturalDatabase.festivals.diwali;
+    }
+    if (lowerQuestion.includes('holi')) {
+      return culturalDatabase.festivals.holi;
+    }
+    if (lowerQuestion.includes('durga') || lowerQuestion.includes('navratri')) {
+      return culturalDatabase.festivals.durga;
+    }
+    if (lowerQuestion.includes('dussehra') || lowerQuestion.includes('vijayadashami')) {
+      return culturalDatabase.festivals.dussehra;
+    }
+    
+    // Philosophy
+    if (lowerQuestion.includes('karma')) {
+      return culturalDatabase.philosophy.karma;
+    }
+    if (lowerQuestion.includes('dharma')) {
+      return culturalDatabase.philosophy.dharma;
+    }
+    if (lowerQuestion.includes('moksha') || lowerQuestion.includes('liberation')) {
+      return culturalDatabase.philosophy.moksha;
+    }
+    
+    // Arts
+    if (lowerQuestion.includes('music') || lowerQuestion.includes('classical') || lowerQuestion.includes('raga')) {
+      return culturalDatabase.arts.music;
+    }
+    if (lowerQuestion.includes('dance') || lowerQuestion.includes('bharatanatyam') || lowerQuestion.includes('kathak')) {
+      return culturalDatabase.arts.dance;
+    }
+    
+    // Literature
+    if (lowerQuestion.includes('veda') || lowerQuestion.includes('rigveda')) {
+      return culturalDatabase.literature.vedas;
+    }
+    if (lowerQuestion.includes('ramayana') || lowerQuestion.includes('mahabharata') || lowerQuestion.includes('gita')) {
+      return culturalDatabase.literature.epics;
+    }
+    
+    // General festivals
+    if (lowerQuestion.includes('festival')) {
+      return "🎊 India celebrates countless festivals throughout the year! Major ones include: Diwali (lights), Holi (colors), Dussehra (good over evil), Durga Puja (divine feminine), Eid (Muslim celebration), Christmas, Guru Nanak Jayanti (Sikh), Onam (Kerala), Pongal (Tamil harvest), and many regional celebrations. Each festival has deep spiritual meaning and brings communities together. Which festival would you like to know more about?";
+    }
+    
+    // Yoga and meditation
+    if (lowerQuestion.includes('yoga') || lowerQuestion.includes('meditation')) {
+      return "🧘‍♀️ Yoga, meaning 'union' in Sanskrit, is India's gift to the world for physical, mental, and spiritual well-being. The eight limbs (Ashtanga) include ethical guidelines, physical postures (asanas), breath control (pranayama), and meditation (dhyana). Different paths include Hatha, Kundalini, Bhakti, and Raja yoga, all leading to self-realization.";
+    }
+    
+    // Food and cuisine
+    if (lowerQuestion.includes('food') || lowerQuestion.includes('cuisine') || lowerQuestion.includes('spice')) {
+      return "🍛 Indian cuisine reflects our diverse culture with regional specialties: North Indian curries and breads, South Indian rice dishes and sambars, Bengali fish preparations, Gujarati vegetarian thalis, Rajasthani dal-baati, and countless street foods. Spices like turmeric, cumin, coriander are used for both flavor and Ayurvedic health benefits. Food is considered sacred - 'Annam Brahma' (food is divine).";
+    }
+    
+    // Default response
+    return "🕉️ India's cultural heritage spans thousands of years, encompassing profound philosophy, vibrant festivals, classical arts, ancient wisdom texts, and diverse traditions. From the Vedic period to modern times, Bharat has been a beacon of spiritual knowledge and cultural richness. Feel free to ask about specific festivals, philosophical concepts, classical arts, ancient texts, yoga, Ayurveda, or any aspect of Indian culture you're curious about!";
   };
 
   const handleSend = () => {
