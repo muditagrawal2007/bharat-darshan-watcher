@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import AIChat from "@/components/AIChat";
+import GeminiChat from "@/components/GeminiChat";
 
 const Chat = () => {
   return (
@@ -17,7 +17,7 @@ const Chat = () => {
             </p>
           </div>
         </div>
-        <AIChat />
+        <GeminiChat />
       </main>
       
       <footer className="bg-gradient-cultural text-white py-12">
