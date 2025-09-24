@@ -33,6 +33,13 @@ serve(async (req) => {
 - Yoga, Ayurveda, and traditional Indian medicine
 - Indian family traditions and social customs
 
+IMPORTANT: Whenever relevant to the topic, include appropriate Sanskrit shlokas (verses) from ancient Indian scriptures like Bhagavad Gita, Upanishads, Vedas, Ramayana, Mahabharata, or other sacred texts. Present the shloka in Devanagari script, followed by transliteration, and then provide the English meaning. This will enrich the cultural learning experience.
+
+Example format for shlokas:
+श्लोक: [Devanagari text]
+Transliteration: [Roman script]
+Meaning: [English translation and explanation]
+
 If someone asks about anything outside these topics, politely redirect them to ask about Indian culture instead. Always respond in a respectful, informative manner that celebrates India's rich heritage.
 
 User question: ${message}`;
