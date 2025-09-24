@@ -20,6 +20,9 @@ const Header = () => {
           <Link to="/culture" className="text-foreground hover:text-primary transition-colors">
             Culture
           </Link>
+          <Link to="/journey" className="text-foreground hover:text-primary transition-colors">
+            Journey
+          </Link>
           <Link to="/about" className="text-foreground hover:text-primary transition-colors">
             About
           </Link>
@@ -29,9 +32,9 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center space-x-3">
-          <Link to="/culture">
+          <Link to="/journey">
             <Button variant="ghost" size="sm">
-              Explore
+              Start Journey
             </Button>
           </Link>
           <Link to="/chat">

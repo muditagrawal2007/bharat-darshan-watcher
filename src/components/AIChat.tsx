@@ -13,13 +13,9 @@ const sampleQuestions = [
 ];
 
 const AIChat = () => {
-  const [messages, setMessages] = useState([
-    {
-      type: "bot",
-      content: "Namaste! I'm your AI guide to Indian culture and wisdom. Ask me anything about Bharat's rich heritage!"
-    }
-  ]);
+  const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [showWelcome, setShowWelcome] = useState(true);
 
   const culturalDatabase = {
     greetings: ["namaste", "hello", "hi", "सलाम", "आदाब"],
@@ -123,10 +119,12 @@ const AIChat = () => {
       { type: "bot", content: botResponse }
     ]);
     setInputValue("");
+    setShowWelcome(false);
   };
 
   const handleSampleQuestion = (question: string) => {
     setInputValue(question);
+    setShowWelcome(false);
   };
 
   return (
@@ -143,29 +141,63 @@ const AIChat = () => {
 
         <Card className="bg-card/80 backdrop-blur-sm border-2 border-primary/10 shadow-warm">
           <div className="h-96 overflow-y-auto p-6 space-y-4">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex items-start gap-3 ${
-                  message.type === "user" ? "flex-row-reverse" : ""
-                }`}
-              >
-                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
-                  message.type === "bot" 
-                    ? "bg-gradient-cultural text-white" 
-                    : "bg-primary text-primary-foreground"
-                }`}>
-                  {message.type === "bot" ? <Bot className="h-4 w-4" /> : <User className="h-4 w-4" />}
+            {showWelcome ? (
+              <div className="text-center py-8">
+                <Bot className="mx-auto h-16 w-16 mb-6 text-primary" />
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold mb-2 bg-gradient-cultural bg-clip-text text-transparent">
+                    🙏 Welcome to Understanding Bharat! 🙏
+                  </h3>
+                  <p className="text-muted-foreground mb-4">
+                    Namaste! I am here to help you explore Indian culture, traditions, philosophy, and ancient wisdom.
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    "सर्वे भवन्तु सुखिनः" - May all beings be happy
+                  </p>
                 </div>
-                <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-xl ${
-                  message.type === "bot"
-                    ? "bg-muted text-foreground"
-                    : "bg-gradient-hero text-primary-foreground"
-                }`}>
-                  {message.content}
+                
+                <div className="text-left max-w-2xl mx-auto">
+                  <h4 className="text-lg font-semibold mb-4 text-center">🌟 Start Your Cultural Journey - Try these:</h4>
+                  <div className="grid grid-cols-1 gap-2 mb-6">
+                    {sampleQuestions.map((question, index) => (
+                      <Button
+                        key={index}
+                        variant="outline"
+                        className="text-left justify-start h-auto p-3 hover:bg-primary/5 transition-all"
+                        onClick={() => handleSampleQuestion(question)}
+                      >
+                        <Sparkles className="h-4 w-4 mr-2 text-primary" />
+                        <span className="text-sm">{question}</span>
+                      </Button>
+                    ))}
+                  </div>
                 </div>
               </div>
-            ))}
+            ) : (
+              messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`flex items-start gap-3 ${
+                    message.type === "user" ? "flex-row-reverse" : ""
+                  }`}
+                >
+                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
+                    message.type === "bot" 
+                      ? "bg-gradient-cultural text-white" 
+                      : "bg-primary text-primary-foreground"
+                  }`}>
+                    {message.type === "bot" ? <Bot className="h-4 w-4" /> : <User className="h-4 w-4" />}
+                  </div>
+                  <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-xl ${
+                    message.type === "bot"
+                      ? "bg-muted text-foreground"
+                      : "bg-gradient-hero text-primary-foreground"
+                  }`}>
+                    {message.content}
+                  </div>
+                </div>
+              ))
+            )}
           </div>
 
           <div className="p-6 border-t border-border">

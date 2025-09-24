@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/indian-temple-hero.jpg";
 import { MessageCircle, Compass } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -29,22 +30,26 @@ const Hero = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-          <Button 
-            variant="hero" 
-            size="lg" 
-            className="group min-w-[200px]"
-          >
-            <Compass className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
-            Start Cultural Journey
-          </Button>
-          <Button 
-            variant="cultural" 
-            size="lg" 
-            className="group min-w-[200px]"
-          >
-            <MessageCircle className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-            Ask AI Assistant
-          </Button>
+          <Link to="/journey">
+            <Button 
+              variant="hero" 
+              size="lg" 
+              className="group min-w-[200px]"
+            >
+              <Compass className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
+              Start Cultural Journey
+            </Button>
+          </Link>
+          <Link to="/chat">
+            <Button 
+              variant="cultural" 
+              size="lg" 
+              className="group min-w-[200px]"
+            >
+              <MessageCircle className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+              Ask AI Assistant
+            </Button>
+          </Link>
         </div>
         
         <div className="text-center">
