@@ -20,6 +20,21 @@ const GeminiChat = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
+  const suggestedQuestions = [
+    "Tell me about Diwali festival and its significance",
+    "What is the meaning of Namaste?",
+    "Explain the philosophy of Yoga and its benefits",
+    "What are the main teachings of the Bhagavad Gita?",
+    "Tell me about Indian classical dance forms",
+    "What is Ayurveda and how does it work?",
+    "Explain the significance of Om in Hindu philosophy",
+    "What are the different types of Indian festivals?"
+  ];
+
+  const handleSuggestedQuestion = (question: string) => {
+    setInput(question);
+  };
+
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
 
@@ -74,9 +89,35 @@ const GeminiChat = () => {
         <ScrollArea className="h-[600px] pr-4">
           <div className="space-y-4">
             {messages.length === 0 && (
-              <div className="text-center text-muted-foreground py-12">
-                <Bot className="mx-auto h-12 w-12 mb-4 opacity-50" />
-                <p>Start a conversation with Gemini AI!</p>
+              <div className="text-center py-8">
+                <Bot className="mx-auto h-16 w-16 mb-6 text-primary" />
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold mb-2 bg-gradient-cultural bg-clip-text text-transparent">
+                    🙏 Welcome to Understanding Bharat 🙏
+                  </h2>
+                  <p className="text-muted-foreground mb-4">
+                    I am here to help you explore the rich traditions, culture, philosophy, and heritage of India.
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    "सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः" - May all beings be happy and free from illness
+                  </p>
+                </div>
+                
+                <div className="text-left max-w-2xl mx-auto">
+                  <h3 className="text-lg font-semibold mb-4 text-center">✨ Try asking me about:</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
+                    {suggestedQuestions.map((question, index) => (
+                      <Button
+                        key={index}
+                        variant="outline"
+                        className="text-left justify-start h-auto p-3 hover:bg-primary/5"
+                        onClick={() => handleSuggestedQuestion(question)}
+                      >
+                        <span className="text-sm">{question}</span>
+                      </Button>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
             {messages.map((message) => (
