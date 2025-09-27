@@ -190,10 +190,6 @@ const GeminiChat = () => {
     // Convert **text** to bold
     let formatted = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     
-    // Convert URLs to clickable links
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    formatted = formatted.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700 underline">$1</a>');
-    
     // Convert bullet points
     formatted = formatted.replace(/^• (.*$)/gim, '<li class="ml-4">$1</li>');
     
