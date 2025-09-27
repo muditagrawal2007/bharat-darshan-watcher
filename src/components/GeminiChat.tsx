@@ -186,6 +186,23 @@ const GeminiChat = () => {
     }
   };
 
+  const formatMessage = (content: string) => {
+    // Convert **text** to bold
+    let formatted = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    
+    // Convert URLs to clickable links
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    formatted = formatted.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700 underline">$1</a>');
+    
+    // Convert bullet points
+    formatted = formatted.replace(/^• (.*$)/gim, '<li class="ml-4">$1</li>');
+    
+    // Wrap consecutive <li> elements in <ul>
+    formatted = formatted.replace(/(<li class="ml-4">.*<\/li>\s*)+/g, '<ul class="list-disc list-inside space-y-1">$&</ul>');
+    
+    return formatted;
+  };
+
   return (
     <div className="flex flex-col h-full max-w-4xl mx-auto p-4">
       <div className="flex-1 mb-4">
@@ -261,7 +278,10 @@ const GeminiChat = () => {
                 )}
                 <Card className={`max-w-[80%] ${message.isUser ? 'bg-primary text-primary-foreground' : ''}`}>
                   <CardContent className="p-3">
-                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                    <div 
+                      className="text-sm whitespace-pre-wrap"
+                      dangerouslySetInnerHTML={{ __html: formatMessage(message.content) }}
+                    />
                     <span className="text-xs opacity-70 mt-2 block">
                       {message.timestamp.toLocaleTimeString()}
                     </span>
